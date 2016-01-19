@@ -5,10 +5,18 @@
     
   <div class="panel-body">
     <% @messages.each do |message| %>
-      <span class="label label-info"><%= message.name %></span>
-      age:<%= message.age %>才
+      <span class="label label-info"><%= message.name %>さん</span>
+      年齢:<%= message.age %>才
+      &nbsp;性別:
+        <% if message.gender == 2 %>
+        女性
+        <% elsif message.gender == 1 %>
+        男性
+        <% else %>
+        不明
+        <% end %>
       <%= message.body %>
-        (<%= link_to "edit" , edit_message_path(message) %>
+        ( <%= link_to "edit" , edit_message_path(message) %>
          <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
         )
       <br>

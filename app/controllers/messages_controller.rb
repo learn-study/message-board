@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.gender = 0 unless @message.gender.present?
     if @message.save
       redirect_to root_path , notice: 'メッセージを保存しました'
     else
@@ -38,7 +39,7 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:name, :body, :age)
+    params.require(:message).permit(:name, :body, :age, :gender)
   end
 
   def set_message
